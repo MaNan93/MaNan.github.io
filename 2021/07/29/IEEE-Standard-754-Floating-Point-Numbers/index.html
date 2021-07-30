@@ -11,34 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>All Posts - MaNan</title>
+  <title>IEEE Standard 754 Floating Point Numbers</title>
   
-  <link rel="canonical" href="http://manan.cc/archives/">
+  <link rel="canonical" href="http://manan.cc/2021/07/29/IEEE-Standard-754-Floating-Point-Numbers/">
   
-  <meta name="description" content="">
+  <meta name="description" content="IEEE Standard 754 floating point is the most common representation today for real numbers on computers, including Intel-based PC’s, Macintoshes, and m">
   
   
   <meta name="author" content="MaNan">
   
-  <meta property="og:image" content="http://manan.cc/images/thumbnail.jpg">
+  <meta property="og:image" content="http://manan.ccundefined">
   
   <meta property="og:site_name" content="Hexo" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="All Posts - MaNan" />
+  <meta property="og:title" content="IEEE Standard 754 Floating Point Numbers" />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="IEEE Standard 754 floating point is the most common representation today for real numbers on computers, including Intel-based PC’s, Macintoshes, and m">
   
-  <meta property="og:url" content="http://manan.cc/archives/" />
+  <meta property="og:url" content="http://manan.cc/2021/07/29/IEEE-Standard-754-Floating-Point-Numbers/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Posts - MaNan">
+  <meta name="twitter:title" content="IEEE Standard 754 Floating Point Numbers">
   
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="IEEE Standard 754 floating point is the most common representation today for real numbers on computers, including Intel-based PC’s, Macintoshes, and m">
   
   
-  <meta name="twitter:image" content="http://manan.cc/images/thumbnail.jpg">
+  <meta name="twitter:image" content="http://manan.ccundefined">
   
-  <meta name="twitter:url" content="http://manan.cc/archives/" />
+  <meta name="twitter:url" content="http://manan.cc/2021/07/29/IEEE-Standard-754-Floating-Point-Numbers/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -189,80 +189,22 @@
 </div>
 
         <div class="trans">
-          
-<h2>All Posts</h2>
+            <h2>IEEE Standard 754 Floating Point Numbers</h2>
 
+  <p>IEEE Standard 754 floating point is the most common representation today for real numbers on computers, including Intel-based PC’s, Macintoshes, and most Unix platforms. This article gives a brief overview of IEEE floating point and its representation. Discussion of arithmetic implementation may be found in the book mentioned at the bottom of this article.</p>
+<p>Author:Steve Hollasch</p>
+<h2 id="What-Are-Floating-Point-Numbers"><a href="#What-Are-Floating-Point-Numbers" class="headerlink" title="What Are Floating Point Numbers?"></a>What Are Floating Point Numbers?</h2><p>There are several ways to represent real numbers on computers. Fixed point places a radix point somewhere in the middle of the digits, and is equivalent to using integers that represent portions of some unit. For example, one might represent 1/100ths of a unit; if you have four decimal digits, you could represent 10.82, or 00.01. Another approach is to use rationals, and represent every number as the ratio of two integers.</p>
+<p>Floating-point representation – the most common solution – uses scientific notation to encode numbers, with a base number and an exponent. For example, 123.456 could be represented as 1.23456 × 102. In hexadecimal, the number 123.abc might be represented as 1.23abc × 162. In binary, the number 10100.110 could be represented as 1.0100110 × 24.</p>
+<p>Floating-point solves a number of representation problems. Fixed-point has a fixed window of representation, which limits it from representing both very large and very small numbers. Also, fixed-point is prone to a loss of precision when two large numbers are divided.</p>
+<p>Floating-point, on the other hand, employs a sort of “sliding window” of precision appropriate to the scale of the number. This allows it to represent numbers from 1,000,000,000,000 to 0.0000000000000001 with ease, and while maximizing precision (the number of digits) at both ends of the scale.</p>
+<h2 id="Storage-Layout"><a href="#Storage-Layout" class="headerlink" title="Storage Layout"></a>Storage Layout</h2><p>IEEE floating point numbers have three basic components: the sign, the exponent, and the mantissa. The mantissa is composed of the fraction and an implicit leading digit (explained below). The exponent base (2) is implicit and need not be stored.</p>
+<p>The following table shows the layout for single (32-bit) and double (64-bit) precision floating-point values. The number of bits for each field are shown, followed by the bit ranges in square brackets. 00 = least-significant bit.</p>
+<pre><code>    Floating Point Components
+</code></pre>
+<p>||Sign|Exponent|Fraction|<br>|Single Precision|    1 [31]|    8 [30–23]|    23 [22–00]|<br>|Double Precision|    1 [63]|    11 [62–52]|    52 [51–00]|</p>
 
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Jul 29, 2021</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/07/29/IEEE-Standard-754-Floating-Point-Numbers/" class="">
-            
-              IEEE Standard 754 Floating Point Numbers
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Jul 29, 2021</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/07/29/Hi-there-What-does-%E2%80%98there%E2%80%99-mean/" class="">
-            
-              Hi there! What does ‘there’ mean?
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Jul 29, 2021</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/07/29/hellowolrd/" class="">
-            
-              hellowolrd
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">Jul 29, 2021</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2021/07/29/hello-world/" class="">
-            
-              Hello World
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-<div class="pagination-bar">
-  <ul class="pagination">
-    
-    
-  </ul>
-</div>
+  <p> — Jul 29, 2021</p>
+  
 
 
           <div class="row mt-2">
