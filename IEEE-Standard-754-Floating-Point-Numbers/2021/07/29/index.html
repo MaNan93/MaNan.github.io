@@ -204,27 +204,27 @@
 <p>Floating-point, on the other hand, employs a sort of “sliding window” of precision appropriate to the scale of the number. This allows it to represent numbers from 1,000,000,000,000 to 0.0000000000000001 with ease, and while maximizing precision (the number of digits) at both ends of the scale.</p>
 <h2 id="Storage-Layout"><a href="#Storage-Layout" class="headerlink" title="Storage Layout"></a>Storage Layout</h2><p>IEEE floating point numbers have three basic components: the sign, the exponent, and the mantissa. The mantissa is composed of the fraction and an implicit leading digit (explained below). The exponent base (2) is implicit and need not be stored.</p>
 <p>The following table shows the layout for single (32-bit) and double (64-bit) precision floating-point values. The number of bits for each field are shown, followed by the bit ranges in square brackets. 00 = least-significant bit.</p>
-<p><em>Floating Point Components</em></p>
+<p>​                                            <em>Floating Point Components</em></p>
 <table>
 <thead>
 <tr>
-<th></th>
+<th align="center"></th>
 <th align="center">Sign</th>
-<th>Exponent</th>
-<th>Fraction</th>
+<th align="center">Exponent</th>
+<th align="center">Fraction</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Single Precision</td>
+<td align="center">Single Precision</td>
 <td align="center">1 [31]</td>
-<td>8 [30–23]</td>
-<td>23 [22–00]</td>
+<td align="center">8 [30–23]</td>
+<td align="center">23 [22–00]</td>
 </tr>
 <tr>
-<td>Double Precision</td>
+<td align="center">Double Precision</td>
 <td align="center">1 [63]</td>
-<td>11 [62–52]</td>
-<td>52 [51–00]</td>
+<td align="center">11 [62–52]</td>
+<td align="center">52 [51–00]</td>
 </tr>
 </tbody></table>
 <p>Laid out as bits, floating point numbers look like this:</p>
@@ -259,7 +259,7 @@
 </ol>
 <p>This approximates the 32-bit value, but doesn’t yield an exact representation. On the other hand, besides the ability to represent fractional components (which integers lack completely), the floating-point value can represent numbers around 2<sup>127</sup>, compared to 32-bit integers’ maximum value around 2<sup>32</sup>.</p>
 <p>The range of positive floating point numbers can be split into normalized numbers (which preserve the full precision of the mantissa), and denormalized numbers (which assume a leading digit of 0, discussed later) which use only a portion of the fractions’s precision.</p>
-<p><em>Floating Point Range</em></p>
+<p>​                                                      <em>Floating Point Range</em></p>
 <table>
 <thead>
 <tr>
@@ -293,7 +293,7 @@
 </ol>
 <p>Overflow means that values have grown too large for the representation, much in the same way that you can overflow integers. Underflow is a less serious problem because is just denotes a loss of precision, which is guaranteed to be closely approximated by zero.</p>
 <p>Here’s a table of the total effective range of finite IEEE floating-point numbers:</p>
-<p><em>Effective Floating-Point Range</em></p>
+<p>​                                            <em>Effective Floating-Point Range</em></p>
 <table>
 <thead>
 <tr>
@@ -324,7 +324,7 @@
 <p>An SNaN is a NaN with the most significant fraction bit clear. It can be used to signal an exception when used in operations. SNaN’s can be handy to assign to uninitialized variables to trap premature usage.</p>
 <p>Semantically, QNaN’s denote indeterminate operations, while SNaN’s denote invalid operations.</p>
 <h2 id="Special-Operations"><a href="#Special-Operations" class="headerlink" title="Special Operations"></a>Special Operations</h2><p>Operations on special numbers are well-defined by IEEE. In the simplest case, any operation with a NaN yields a NaN result. Other operations are as follows:</p>
-<p><em>Special Arithmetic Results</em></p>
+<p>​                                                <em>Special Arithmetic Results</em></p>
 <table>
 <thead>
 <tr>
