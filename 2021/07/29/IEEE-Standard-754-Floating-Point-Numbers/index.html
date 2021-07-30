@@ -225,8 +225,7 @@
 </tr>
 </tbody></table>
 <p>Laid out as bits, floating point numbers look like this:</p>
-<p>Single: SEEEEEEE EFFFFFFF FFFFFFFF FFFFFFFF</p>
-<p>Double: SEEEEEEE EEEEFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF</p>
+<p><font size=2>Single: <font color=red>S</font><font color=orange>EEEEEEE E</font><font color=green>FFFFFFF FFFFFFFF FFFFFFFF</font></font><br><font size=2>Double: <font color=red>S</font><font color=orange>EEEEEEE EEEE</font><font color=green>FFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF</font></font>  </p>
 <h2 id="The-Sign-Bit"><a href="#The-Sign-Bit" class="headerlink" title="The Sign Bit"></a>The Sign Bit</h2><p>The sign bit is as simple as it gets: 0 denotes a positive number, and 1 denotes a negative number. Flipping the value of this bit flips the sign of the number.</p>
 <h2 id="The-Exponent"><a href="#The-Exponent" class="headerlink" title="The Exponent"></a>The Exponent</h2><p>The exponent field needs to represent both positive and negative exponents. To do this, a bias is added to the actual exponent in order to get the stored exponent. For IEEE single-precision floats, this value is 127. Thus, to express an exponent of zero, 127 is stored in the exponent field. A stored value of 200 indicates an exponent of (200−127), or 73. For reasons discussed later, exponents of −127 (all 0s) and +128 (all 1s) are reserved for special numbers.</p>
 <p>Double precision has an 11-bit exponent field, with a bias of 1023.</p>
