@@ -234,16 +234,13 @@
 <p>Double precision has an 11-bit exponent field, with a bias of 1023.</p>
 <h2 id="The-Mantissa"><a href="#The-Mantissa" class="headerlink" title="The Mantissa"></a>The Mantissa</h2><p>The mantissa, also known as the significand, represents the precision bits of the number. It is composed of an implicit leading bit (left of the radix point) and the fraction bits (to the right of the radix point).</p>
 <p>To find out the value of the implicit leading bit, consider that any number can be expressed in scientific notation in many different ways. For example, the number 50 can be represented as any of these:</p>
-<ul>
-<li>   0.050 × 10<sup>3</sup></li>
-<li>   .5000 × 10<sup>2</sup></li>
-<li>   5.000 × 10<sup>1</sup></li>
-<li>   50.00 × 10<sup>0</sup></li>
-<li><ol start="5000">
-<li>× 10<sup>−2</sup></li>
-</ol>
-</li>
-</ul>
+<pre>
+    0.050 × 10<sup>3</sup>
+    .5000 × 10<sup>2</sup>
+    5.000 × 10<sup>1</sup>
+    50.00 × 10<sup>0</sup>
+    5000. × 10<sup>−2</sup>  
+</pre>
 <p>In order to maximize the quantity of representable numbers, floating-point numbers are typically stored in normalized form. This basically puts the radix point after the first non-zero digit. In normalized form, 50 is represented as 5.000 × 101.</p>
 <p>A nice little optimization is now available to us in base two, since binary has only one possible non-zero digit: 1. Thus, we can just assume a leading digit of 1, and don’t need to store it in the floating-point representation. As a result, we can assume a leading digit of 1 without storing it, so that a 32-bit floating-point value effectively has 24 bits of mantissa: 23 explicit fraction bits plus one implicit leading bit of 1.</p>
 <h2 id="Putting-it-All-Together"><a href="#Putting-it-All-Together" class="headerlink" title="Putting it All Together"></a>Putting it All Together</h2><p>So, to sum up:</p>
