@@ -13,7 +13,9 @@
   
   <title>IEEE Standard 754 Floating Point Numbers</title>
   
-  <link rel="canonical" href="http://manan.cc/2021/07/29/IEEE-Standard-754-Floating-Point-Numbers/">
+  <link rel="sitemap" href="http://manan.ccsitemap.xml" />
+  
+  <link rel="canonical" href="http://manan.cc/IEEE-Standard-754-Floating-Point-Numbers/2021/07/29/">
   
   <meta name="description" content="IEEE Standard 754 floating point is the most common representation today for real numbers on computers, including Intel-based PC’s, Macintoshes, and m">
   
@@ -28,7 +30,7 @@
   
   <meta property="og:description" content="IEEE Standard 754 floating point is the most common representation today for real numbers on computers, including Intel-based PC’s, Macintoshes, and m">
   
-  <meta property="og:url" content="http://manan.cc/2021/07/29/IEEE-Standard-754-Floating-Point-Numbers/" />
+  <meta property="og:url" content="http://manan.cc/IEEE-Standard-754-Floating-Point-Numbers/2021/07/29/" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="IEEE Standard 754 Floating Point Numbers">
@@ -38,7 +40,7 @@
   
   <meta name="twitter:image" content="http://manan.ccundefined">
   
-  <meta name="twitter:url" content="http://manan.cc/2021/07/29/IEEE-Standard-754-Floating-Point-Numbers/" />
+  <meta name="twitter:url" content="http://manan.cc/IEEE-Standard-754-Floating-Point-Numbers/2021/07/29/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -124,7 +126,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
 
 <body>
   <div class="container">
@@ -311,9 +314,9 @@
 </tbody></table>
 <p><em>Note that the extreme values occur (regardless of sign) when the exponent is at the maximum value for finite numbers (2127 for single-precision, 21023 for double), and the mantissa is filled with 1s (including the normalizing 1 bit).</em></p>
 <h2 id="Special-Values"><a href="#Special-Values" class="headerlink" title="Special Values"></a>Special Values</h2><p>IEEE reserves exponent field values of all 0s and all 1s to denote special values in the floating-point scheme.</p>
-<p>###<em>Denormalized</em><br>If the exponent is all 0s, then the value is a denormalized number, which now has an assumed leading 0 before the binary point. Thus, this represents a number (−1)s × 0.f × 2−126, where s is the sign bit and f is the fraction. For double precision, denormalized numbers are of the form (−1)s × 0.f × 2−1022.</p>
+<p>###<em>Denormalized</em>###<br>If the exponent is all 0s, then the value is a denormalized number, which now has an assumed leading 0 before the binary point. Thus, this represents a number (−1)s × 0.f × 2−126, where s is the sign bit and f is the fraction. For double precision, denormalized numbers are of the form (−1)s × 0.f × 2−1022.</p>
 <p>As denormalized numbers get smaller, they gradually lose precision as the left bits of the fraction become zeros. At the smallest non-zero denormalized value (only the least-significant fraction bit is one), a 32-bit floating-point number has but a single bit of precision, compared to the standard 24-bits for normalized values.</p>
-<p>###<em>Zero</em><br>You can think of zero as a denormalized number (an implicit leading 0 bit) with all 0 fraction bits. Note that −0 and +0 are distinct values, though they both compare as equal.<br>###<em>Infinity</em><br>The values +∞ and −∞ are denoted with an exponent of all 1s and a fraction of all 0s. The sign bit distinguishes between negative infinity and positive infinity. Being able to denote infinity as a specific value is useful because it allows operations to continue past overflow situations. Operations with infinite values are well defined in IEEE floating point.<br>###<em>Not A Number</em><br>The value NaN (Not a Number) is used to represent a value that does not represent a real number. NaN’s are represented by a bit pattern with an exponent of all 1s and a non-zero fraction. There are two categories of NaN: QNaN (Quiet NaN) and SNaN (Signalling NaN).</p>
+<p>###<em>Zero</em>###<br>You can think of zero as a denormalized number (an implicit leading 0 bit) with all 0 fraction bits. Note that −0 and +0 are distinct values, though they both compare as equal.<br>###<em>Infinity</em>###<br>The values +∞ and −∞ are denoted with an exponent of all 1s and a fraction of all 0s. The sign bit distinguishes between negative infinity and positive infinity. Being able to denote infinity as a specific value is useful because it allows operations to continue past overflow situations. Operations with infinite values are well defined in IEEE floating point.<br>###<em>Not A Number</em>###<br>The value NaN (Not a Number) is used to represent a value that does not represent a real number. NaN’s are represented by a bit pattern with an exponent of all 1s and a non-zero fraction. There are two categories of NaN: QNaN (Quiet NaN) and SNaN (Signalling NaN).</p>
 <p>A QNaN is a NaN with the most significant fraction bit set. QNaN’s propagate freely through most arithmetic operations. These values are generated from an operation when the result is not mathematically defined.</p>
 <p>An SNaN is a NaN with the most significant fraction bit clear. It can be used to signal an exception when used in operations. SNaN’s can be handy to assign to uninitialized variables to trap premature usage.</p>
 <p>Semantically, QNaN’s denote indeterminate operations, while SNaN’s denote invalid operations.</p>
@@ -385,7 +388,7 @@
 <li><em><a target="_blank" rel="noopener" href="https://randomascii.wordpress.com/2012/05/20/thats-not-normalthe-performance-of-odd-floats/">That’s Not Normal – the Performance of Odd Floats</a>, Bruce Dawson. This is another good article covering performance issues with IEEE specials on x86 architecture.</em></li>
 </ul>
 
-  <p> — Jul 29, 2021</p>
+  <p> — 2021年7月29日</p>
   
 
 
