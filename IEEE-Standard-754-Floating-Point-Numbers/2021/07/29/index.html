@@ -230,16 +230,20 @@
 <p>Laid out as bits, floating point numbers look like this:</p>
 <p><font size=2>Single: <font color=red>S</font><font color=orange>EEEEEEE E</font><font color=green>FFFFFFF FFFFFFFF FFFFFFFF</font></font><br><font size=2>Double: <font color=red>S</font><font color=orange>EEEEEEE EEEE</font><font color=green>FFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF</font></font>  </p>
 <h2 id="The-Sign-Bit"><a href="#The-Sign-Bit" class="headerlink" title="The Sign Bit"></a>The Sign Bit</h2><p>The sign bit is as simple as it gets: 0 denotes a positive number, and 1 denotes a negative number. Flipping the value of this bit flips the sign of the number.</p>
-<h2 id="The-Exponent"><a href="#The-Exponent" class="headerlink" title="The Exponent"></a>The Exponent</h2><p>The exponent field needs to represent both positive and negative exponents. To do this, a bias is added to the actual exponent in order to get the stored exponent. For IEEE single-precision floats, this value is 127. Thus, to express an exponent of zero, 127 is stored in the exponent field. A stored value of 200 indicates an exponent of (200−127), or 73. For reasons discussed later, exponents of −127 (all 0s) and +128 (all 1s) are reserved for special numbers.</p>
+<h2 id="The-Exponent"><a href="#The-Exponent" class="headerlink" title="The Exponent"></a>The Exponent</h2><p>The exponent field needs to represent both positive and negative exponents. To do this, a bias is added to the actual exponent in order to get the stored exponent. For IEEE single-precision floats, this value is 127. Thus, to express an exponent of zero, 127 is stored in the exponent field. A stored value of 200 indicates an exponent of (200<sup>−127</sup>), or 73. For reasons discussed later, exponents of −127 (all 0s) and +128 (all 1s) are reserved for special numbers.</p>
 <p>Double precision has an 11-bit exponent field, with a bias of 1023.</p>
 <h2 id="The-Mantissa"><a href="#The-Mantissa" class="headerlink" title="The Mantissa"></a>The Mantissa</h2><p>The mantissa, also known as the significand, represents the precision bits of the number. It is composed of an implicit leading bit (left of the radix point) and the fraction bits (to the right of the radix point).</p>
 <p>To find out the value of the implicit leading bit, consider that any number can be expressed in scientific notation in many different ways. For example, the number 50 can be represented as any of these:</p>
-<pre><code>0.050 × 103
-.5000 × 102
-5.000 × 101
-50.00 × 100
-5000. × 10−2
-</code></pre>
+<ul>
+<li>   0.050 × 10<sup>3</sup></li>
+<li>   .5000 × 10<sup>2</sup></li>
+<li>   5.000 × 10<sup>1</sup></li>
+<li>   50.00 × 10<sup>0</sup></li>
+<li><ol start="5000">
+<li>× 10<sup>−2</sup></li>
+</ol>
+</li>
+</ul>
 <p>In order to maximize the quantity of representable numbers, floating-point numbers are typically stored in normalized form. This basically puts the radix point after the first non-zero digit. In normalized form, 50 is represented as 5.000 × 101.</p>
 <p>A nice little optimization is now available to us in base two, since binary has only one possible non-zero digit: 1. Thus, we can just assume a leading digit of 1, and don’t need to store it in the floating-point representation. As a result, we can assume a leading digit of 1 without storing it, so that a 32-bit floating-point value effectively has 24 bits of mantissa: 23 explicit fraction bits plus one implicit leading bit of 1.</p>
 <h2 id="Putting-it-All-Together"><a href="#Putting-it-All-Together" class="headerlink" title="Putting it All Together"></a>Putting it All Together</h2><p>So, to sum up:</p>
@@ -256,7 +260,7 @@
 &#x3D; +1.1110000 11001100 10101011 x 231     &#x2F;&#x2F; Single-precision float
 &#x3D;   11110000 11001100 10101011 00000000  &#x2F;&#x2F; Actual float value<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<p>This approximates the 32-bit value, but doesn’t yield an exact representation. On the other hand, besides the ability to represent fractional components (which integers lack completely), the floating-point value can represent numbers around 2^127, compared to 32-bit integers’ maximum value around 2^32.</p>
+<p>This approximates the 32-bit value, but doesn’t yield an exact representation. On the other hand, besides the ability to represent fractional components (which integers lack completely), the floating-point value can represent numbers around 2<sup>127</sup>, compared to 32-bit integers’ maximum value around 2<sup>32</sup>.</p>
 <p>The range of positive floating point numbers can be split into normalized numbers (which preserve the full precision of the mantissa), and denormalized numbers (which assume a leading digit of 0, discussed later) which use only a portion of the fractions’s precision.</p>
 <p><em>Floating Point Range</em></p>
 <table>
@@ -270,25 +274,25 @@
 </thead>
 <tbody><tr>
 <td>Single Precision</td>
-<td>± 2−149 to (1−2−23)×2−126</td>
-<td>± 2−126 to (2−2−23)×2127</td>
-<td>± ≈10−44.85 to ≈1038.53</td>
+<td>± 2<sup>-149</sup> to (1−2<sup>−23</sup>)×2<sup>-126</sup></td>
+<td>± 2<sup>-126</sup> to (2−2−23)×2<sup>127</sup></td>
+<td>± ≈10<sup>−44.85</sup> to ≈10<sup>38.53</sup></td>
 </tr>
 <tr>
 <td>Double Precision</td>
-<td>± 2−1074 to (1−2−52)×2−1022</td>
-<td>± 2−1022 to (2−2−52)×21023</td>
-<td>± ≈10−323.3 to ≈10308.3</td>
+<td>± 2<sup>−1074</sup> to (1−2<sup>−52</sup>) × 2<sup>−1022</sup></td>
+<td>± 2<sup>−1022</sup> to (2−2<sup>−52</sup>)×2<sup>1023</sup></td>
+<td>± ≈10<sup>−323.3</sup> to ≈10<sup>308.3</sup></td>
 </tr>
 </tbody></table>
 <p>Since every floating-point number has a corresponding, negated value (by toggling the sign bit), the ranges above are symmetric around zero.</p>
 <p>There are five distinct numerical ranges that single-precision floating-point numbers are not able to represent with the scheme presented so far:</p>
 <ol>
-<li>Negative numbers less than −(2−2−23) × 2127 (negative overflow)</li>
-<li>Negative numbers greater than −2−149 (negative underflow)</li>
+<li>Negative numbers less than −(2−2<sup>−23</sup>) × 2<sup>127</sup> (negative overflow)</li>
+<li>Negative numbers greater than −2<sup>−149</sup> (negative underflow)</li>
 <li>Zero</li>
-<li>Positive numbers less than 2−149 (positive underflow)</li>
-<li>Positive numbers greater than (2−2−23) × 2127 (positive overflow)</li>
+<li>Positive numbers less than 2<sup>−149</sup> (positive underflow)</li>
+<li>Positive numbers greater than (2−2<sup>−23</sup>) × 2<sup>127</sup> (positive overflow)</li>
 </ol>
 <p>Overflow means that values have grown too large for the representation, much in the same way that you can overflow integers. Underflow is a less serious problem because is just denotes a loss of precision, which is guaranteed to be closely approximated by zero.</p>
 <p>Here’s a table of the total effective range of finite IEEE floating-point numbers:</p>
@@ -303,18 +307,18 @@
 </thead>
 <tbody><tr>
 <td>Single</td>
-<td>± (2−2−23) × 2127</td>
-<td>≈ ± 1038.53</td>
+<td>± (2−2<sup>−23</sup>) × 2<sup>127</sup></td>
+<td>≈ ± 10<sup>38.53</sup></td>
 </tr>
 <tr>
 <td>Double</td>
-<td>± (2−2−52) × 21023</td>
-<td>≈ ± 10308.25</td>
+<td>± (2−2<sup>−52</sup>) × 2<sup>1023</sup></td>
+<td>≈ ± 10<sup>308.25</sup></td>
 </tr>
 </tbody></table>
-<p><em>Note that the extreme values occur (regardless of sign) when the exponent is at the maximum value for finite numbers (2127 for single-precision, 21023 for double), and the mantissa is filled with 1s (including the normalizing 1 bit).</em></p>
+<p><em>Note that the extreme values occur (regardless of sign) when the exponent is at the maximum value for finite numbers (2<sup>127</sup> for single-precision, 2<sup>1023</sup> for double), and the mantissa is filled with 1s (including the normalizing 1 bit).</em></p>
 <h2 id="Special-Values"><a href="#Special-Values" class="headerlink" title="Special Values"></a>Special Values</h2><p>IEEE reserves exponent field values of all 0s and all 1s to denote special values in the floating-point scheme.</p>
-<h3 id="Denormalized"><a href="#Denormalized" class="headerlink" title="Denormalized"></a><em>Denormalized</em></h3><p>If the exponent is all 0s, then the value is a denormalized number, which now has an assumed leading 0 before the binary point. Thus, this represents a number (−1)s × 0.f × 2−126, where s is the sign bit and f is the fraction. For double precision, denormalized numbers are of the form (−1)s × 0.f × 2−1022.</p>
+<h3 id="Denormalized"><a href="#Denormalized" class="headerlink" title="Denormalized"></a><em>Denormalized</em></h3><p>If the exponent is all 0s, then the value is a denormalized number, which now has an assumed leading 0 before the binary point. Thus, this represents a number (−1)s × 0.f × 2<sup>−126</sup>, where s is the sign bit and f is the fraction. For double precision, denormalized numbers are of the form (−1)s × 0.f × 2<sup>−1022</sup>.</p>
 <p>As denormalized numbers get smaller, they gradually lose precision as the left bits of the fraction become zeros. At the smallest non-zero denormalized value (only the least-significant fraction bit is one), a 32-bit floating-point number has but a single bit of precision, compared to the standard 24-bits for normalized values.</p>
 <h3 id="Zero"><a href="#Zero" class="headerlink" title="Zero"></a><em>Zero</em></h3><p>You can think of zero as a denormalized number (an implicit leading 0 bit) with all 0 fraction bits. Note that −0 and +0 are distinct values, though they both compare as equal.</p>
 <h3 id="Infinity"><a href="#Infinity" class="headerlink" title="Infinity"></a><em>Infinity</em></h3><p>The values +∞ and −∞ are denoted with an exponent of all 1s and a fraction of all 0s. The sign bit distinguishes between negative infinity and positive infinity. Being able to denote infinity as a specific value is useful because it allows operations to continue past overflow situations. Operations with infinite values are well defined in IEEE floating point.  </p>
